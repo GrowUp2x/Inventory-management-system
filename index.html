@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Inventory Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Advanced Inventory Management</h1>
+      <div class="user-section">
+        <button id="loginBtn" onclick="toggleLogin()">Login</button>
+	<button id="exportCsvBtn" onclick="exportToCSV()">Export to CSV</button>
+	</div>
+    </header>
+
+    <!-- Form for adding products -->
+    <div class="form-container">
+      <input type="text" id="productName" placeholder="Product Name" required>
+      <input type="number" id="productQuantity" placeholder="Quantity" required min="0">
+      <input type="number" id="productPrice" placeholder="Price" required min="0">
+      <input type="file" id="productImage" accept="image/*">
+      <select id="productCategory">
+        <option value="electronics">Electronics</option>
+        <option value="clothing">Clothing</option>
+        <option value="groceries">Groceries</option>
+      </select>
+      <button onclick="addProduct()">Add Product</button>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-container">
+      <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="searchProducts()">
+      <input type="number" id="minPrice" placeholder="Min Price" oninput="filterProducts()">
+      <input type="number" id="maxPrice" placeholder="Max Price" oninput="filterProducts()">
+      <select id="categoryFilter" onchange="filterProducts()">
+        <option value="">All Categories</option>
+        <option value="electronics">Electronics</option>
+        <option value="clothing">Clothing</option>
+        <option value="groceries">Groceries</option>
+      </select>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div class="dashboard">
+      <div class="summary-box">Total Products: <span id="totalProducts">0</span></div>
+      <div class="summary-box">Out of Stock: <span id="outOfStock">0</span></div>
+      <div class="summary-box">Total Value: $<span id="totalValue">0.00</span></div>
+    </div>
+
+    <!-- Product List -->
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Image</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="productTable"></tbody>
+    </table>
+
+    <!-- Success/Failure Notification -->
+    <div id="notification" class="notification"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
